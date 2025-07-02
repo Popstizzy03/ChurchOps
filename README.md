@@ -57,7 +57,7 @@ pip3 install pydub google-api-python-client oauth2client
 Create a personalized setup with the initialization script:
 ```bash
 chmod +x init_church_media.sh
-./init_church_media.sh --ministry-name="Your Church" --output-quality=320k
+./init_church_media.sh --ministry-name="Gospel Mission Team UNZA" --output-quality=320k
 ```
 
 ### 🔁 Processing Workflow
