@@ -329,7 +329,7 @@ Deploy this interactive HTML visualizer to preview your sermon library:
 
 ## 📞 Support & Contact
 For technical support or custom implementation:
-- 📧 Email: [your-email@example.com](mailto:kabongorabboni03@gmail.com)
+- 📧 Email: [Click Hear to send Email](mailto:kabongorabboni03@gmail.com)
 - 💬 GitHub Issues: [Report a bug](https://github.com/your-username/church-media-ops/issues)
 
 ---
