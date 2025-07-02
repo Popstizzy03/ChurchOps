@@ -75,7 +75,7 @@ Each `.wav` file in `raw/audio/` is:
 ---
 
 ## 💻 GitHub Pages Preview
-Want to create a website to preview or share your sermons? Use this:
+Want to create a website to preview or share your sermons? Use this (or you custom site):
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -111,7 +111,7 @@ Want to create a website to preview or share your sermons? Use this:
 
 ## 🧠 Built By
 **Rabboni Kabongo** – System Architect & Audio Ops Commander  
-**ChatGPT** – Tactical AI Engineer
+**Nyx** – Tactical AI Engineer
 
 ---
 
