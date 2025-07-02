@@ -321,7 +321,7 @@ Deploy this interactive HTML visualizer to preview your sermon library:
 ---
 
 ## 🧠 Built By
-**Rabboni Kabongo** — System Architect & Audio Ops Commander  
+**Rabboni** — System Architect & Audio Ops Enginner  
 **Nyx** — Tactical AI Engineer  
 **Claude** — Documentation & UX Enhancement Specialist
 
@@ -329,7 +329,7 @@ Deploy this interactive HTML visualizer to preview your sermon library:
 
 ## 📞 Support & Contact
 For technical support or custom implementation:
-- 📧 Email: [your-email@example.com](mailto:your-email@example.com)
+- 📧 Email: [your-email@example.com](mailto:kabongorabboni03@gmail.com)
 - 💬 GitHub Issues: [Report a bug](https://github.com/your-username/church-media-ops/issues)
 
 ---
