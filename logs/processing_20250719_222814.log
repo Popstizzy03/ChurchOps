@@ -1,0 +1,6 @@
+ℹ️  Found 1 audio file(s) to process
+
+ℹ️  Processing files sequentially
+ℹ️  Processing: test-sermon.wav
+🔍   → Normalizing audio (Target: -16 LUFS)
+❌ Failed to normalize test-sermon.wav
