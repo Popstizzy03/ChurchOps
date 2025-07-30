@@ -1,67 +1,87 @@
 #!/bin/bash
-# init_church_media.sh - Initialize the Church Media Ops system
-# Usage: ./init_church_media.sh [--ministry-name="Your Church"] [--output-quality=320k]
 
-# Default values
-MINISTRY_NAME="Church Media Ops"
-OUTPUT_QUALITY="192k"
+# === CHURCH MEDIA OPS INITIALIZATION SCRIPT ===
+# Enhanced setup with complete directory structure and configuration
 
-# Parse arguments
-for i in "$@"; do
-  case $i in
-    --ministry-name=*)
-      MINISTRY_NAME="${i#*=}"
-      shift
-      ;;
-    --output-quality=*)
-      OUTPUT_QUALITY="${i#*=}"
-      shift
-      ;;
-    *)
-      # unknown option
-      ;;
-  esac
+set -euo pipefail
+
+ROOT="$HOME/ChurchOps"
+MINISTRY_NAME="Gospel Mission Team"
+OUTPUT_QUALITY="320k"
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --ministry-name=*)
+            MINISTRY_NAME="${1#*=}"
+            shift
+            ;;
+        --output-quality=*)
+            OUTPUT_QUALITY="${1#*=}"
+            shift
+            ;;
+        --help)
+            echo "Church Media Ops Initialization"
+            echo "Usage: $0 [--ministry-name=NAME] [--output-quality=BITRATE]"
+            echo "  --ministry-name=NAME     Set ministry name (default: Gospel Mission Team)"
+            echo "  --output-quality=BITRATE Set audio quality (default: 320k)"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use --help for usage information"
+            exit 1
+            ;;
+    esac
 done
 
-echo "🙏 Initializing $MINISTRY_NAME Media Operations System..."
+echo "🏗️  Setting up Church Media Ops workspace..."
+echo "Location: $ROOT"
+echo "Ministry: $MINISTRY_NAME"
+echo "Quality: $OUTPUT_QUALITY"
+echo ""
 
-# Create directory structure
-mkdir -p ~/ChurchOps/raw/audio
-mkdir -p ~/ChurchOps/processed/audio
-mkdir -p ~/ChurchOps/export/youtube
-mkdir -p ~/ChurchOps/export/podcast
-mkdir -p ~/ChurchOps/export/radio
-mkdir -p ~/ChurchOps/assets/music
-mkdir -p ~/ChurchOps/assets/thumbnails
-mkdir -p ~/ChurchOps/assets/branding
-mkdir -p ~/ChurchOps/metadata
-mkdir -p ~/ChurchOps/scripts
-mkdir -p ~/ChurchOps/config
-mkdir -p ~/ChurchOps/logs
+# Create complete directory structure
+mkdir -p "$ROOT"/{raw/{audio,video},processed/{audio,video},assets/{intros,music,ambience,sfx},archive,export/{youtube,radio,podcast},scripts,config,logs,metadata,thumbnails}
 
-# Create configuration file
-cat > ~/ChurchOps/config/settings.conf << EOF
-# Church Media Ops Configuration
-MINISTRY_NAME="$MINISTRY_NAME"
-OUTPUT_QUALITY="$OUTPUT_QUALITY"
-NORMALIZE_LEVEL="-16"
-TARGET_PEAK="-1.5"
-MUSIC_VOLUME="0.15"
-GENERATE_THUMBNAILS=true
+# Create sample background music placeholder
+cat > "$ROOT/assets/music/README.md" << 'EOF'
+# Background Music Assets
+
+Place your background music files here:
+- `background.mp3` - Default background track for sermons
+- `intro.mp3` - Intro music (optional)
+- `outro.mp3` - Outro music (optional)
+
+**Recommended formats:** MP3, WAV
+**Licensing:** Ensure you have proper licensing for all music used
 EOF
 
-# Copy scripts
-cp batch_normalizer.sh ~/ChurchOps/scripts/
-cp metadata_generator.sh ~/ChurchOps/scripts/
-cp platform_distributor.sh ~/ChurchOps/scripts/
+# Create sample assets
+echo "🎵 Setting up sample assets..."
+
+# Create .gitkeep files for empty directories
+touch "$ROOT"/{raw/audio,raw/video,processed/audio,processed/video,archive,export/youtube,export/radio,export/podcast,logs,metadata,thumbnails}/.gitkeep
 
 # Make scripts executable
-chmod +x ~/ChurchOps/scripts/*.sh
+chmod +x "$ROOT/scripts/batch_normalizer.sh" 2>/dev/null || true
+chmod +x "$ROOT/church_media_ops.sh" 2>/dev/null || true
 
-echo "✅ Setup complete! Your $MINISTRY_NAME Media Operations System is ready."
-echo "📂 System installed at: ~/ChurchOps"
+echo "✅ Directory structure created successfully!"
 echo ""
-echo "Next steps:"
-echo "1. Place your sermon audio files in ~/ChurchOps/raw/audio"
-echo "2. Add background music to ~/ChurchOps/assets/music"
-echo "3. Run processing with: cd ~/ChurchOps/scripts && ./batch_normalizer.sh"
+echo "📂 Your workspace is ready:"
+echo "  📁 $ROOT/raw/audio/        - Place your sermon recordings here (.wav files)"
+echo "  📁 $ROOT/assets/music/     - Add background music files"
+echo "  📁 $ROOT/processed/audio/  - Processed files will be saved here"
+echo "  📁 $ROOT/export/           - Platform-specific exports"
+echo "  📁 $ROOT/config/           - Configuration files"
+echo ""
+echo "🚀 Next steps:"
+echo "  1. Add your sermon .wav files to: $ROOT/raw/audio/"
+echo "  2. Add background music to: $ROOT/assets/music/background.mp3"
+echo "  3. Run: cd $ROOT && ./church_media_ops.sh --all"
+echo ""
+echo "💡 For help: ./church_media_ops.sh --help"
+echo ""
+echo "🎉 Ready to process sermons! Go dominate."
+
